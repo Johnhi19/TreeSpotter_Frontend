@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component';
-import { DisplayComponent } from './display/display.component';
 import { AppComponent } from './app.component';
+import { TreesComponent } from './trees/trees.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'home', component: HomepageComponent, title: 'Home Page' }, // Homepage as the default route
-  { path: 'display', component: DisplayComponent, title: 'Display Page' }, // API interaction page
+  {path: '', component: HomeComponent},
+  {
+    path: 'trees', 
+    component: TreesComponent,
+    children: [
+      {path: ':id', component: TreesComponent}
+    ]
+  }
 ];
 
 @NgModule({
