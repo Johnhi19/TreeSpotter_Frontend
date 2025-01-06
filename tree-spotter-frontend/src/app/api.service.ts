@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:8080'; 
+  // private baseUrl = 'http://localhost:8080'; 
 
-  constructor(private http: HttpClient) {}
+  // constructor(private http: HttpClient) {}
 
-  getTreeById(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/trees/${id}`);
-  }
+  // getTreeById(id: number): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/trees/${id}`);
+  // }
 }
