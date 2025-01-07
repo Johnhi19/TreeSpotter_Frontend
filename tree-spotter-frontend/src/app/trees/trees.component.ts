@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { Tree } from '../models/tree';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-trees',
@@ -10,12 +12,12 @@ import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/
   styleUrl: './trees.component.scss'
 })
 export class TreesComponent {
-  tree = {};
+  tree: Tree | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
   
 
   fetchData(): void {
-    this.http.get(`/api/trees/1`).subscribe((data) => { this.tree = data; });
+    this.apiService.getTreeById(1).subscribe((data) => { this.tree = data; });
   }
 }
