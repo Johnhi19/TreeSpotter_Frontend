@@ -3,8 +3,24 @@
 <a>This is the homepage that I want to show you all</a>
 
 <p><a routerLink="/trees">Trees</a></p>
-<!-- <nav>
+
+<div *ngIf="meadowList">
     <ul>
-        <li><a routerLink="/trees">Trees</a></li>
+      <li *ngFor="let meadow of meadowList">
+        <mat-card appearance="outlined">
+          <mat-card-header>
+            <mat-card-title> {{ meadow.Name }}</mat-card-title>
+            <mat-card-subtitle>{{ meadow.ID }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            In {{ meadow.Location }} with {{ meadow.TreeIds.length }} trees and a size of {{ meadow.Size[0] * meadow.Size[1] }} m² <br>
+            <button mat-button (click)="navigateToMeadow(meadow.ID)"> More Information</button>
+          </mat-card-actions>
+        </mat-card>
+      </li>
     </ul>
-</nav> -->
+  </div>
+  <div *ngIf="!meadowList">
+    Loading...
+  </div>
+  

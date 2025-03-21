@@ -3,7 +3,7 @@ export interface Position {
     Y: number;
   }
   
-  export interface Tree {
+export interface Tree {
     Age: number;
     ID: number;
     MeadowId: number;

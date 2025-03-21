@@ -16,7 +16,6 @@ export class TreesComponent {
 
   constructor(private apiService: ApiService) {}
   
-
   fetchData(): void {
     this.apiService.getTreeById(1).subscribe((data) => { this.tree = data; });
   }

@@ -10,8 +10,15 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  getBasicMeadowInfo(): Observable<any> {
+    return this.http.get('/api/meadows');
+  }
+
+  getMeadowById(id: number): Observable<any> {
+    return this.http.get(`/api/meadows/${id}`);
+  }
+
   getTreeById(id: number): Observable<any> {
     return this.http.get<Tree>(`/api/trees/${id}`);
-    ;
   }
 }

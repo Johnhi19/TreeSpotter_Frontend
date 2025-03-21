@@ -1,0 +1,12 @@
+<div *ngIf="meadow; else loading">
+    <h1>Meadow Details</h1>
+    <p><strong>ID:</strong> {{ meadow.ID }}</p>
+    <p><strong>Name:</strong> {{ meadow.Name }}</p>
+    <p><strong>Size:</strong> {{ meadow.Size }}</p>
+    <p><strong>Location:</strong> {{ meadow.Location }}</p>
+    <p><strong>Tree IDs:</strong> {{ meadow.TreeIds }}</p>
+  </div>
+  
+  <ng-template #loading>
+    <p>Loading meadow details...</p>
+  </ng-template>
