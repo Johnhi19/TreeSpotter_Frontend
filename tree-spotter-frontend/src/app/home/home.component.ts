@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { Meadow } from '../models/meadow';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CommonModule, MatButtonModule, MatCardModule],
+  imports: [CommonModule, MatButtonModule, MatCardModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
