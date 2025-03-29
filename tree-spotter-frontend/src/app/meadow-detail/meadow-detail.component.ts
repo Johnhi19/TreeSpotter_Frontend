@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Meadow } from '../models/meadow';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Tree } from '../models/tree';
 
 @Component({
@@ -14,7 +14,8 @@ import { Tree } from '../models/tree';
 export class MeadowDetailComponent {
   meadowId: number | null = null;
   meadow: Meadow | null = null;
-  treesOfMeadow: Tree[][] | null = null;
+  cells: Tree[][] | null = null;
+  treesOfMeadow: Tree[] = [];
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
@@ -26,14 +27,15 @@ export class MeadowDetailComponent {
       this.apiService.getMeadowById(this.meadowId).subscribe((data: Meadow) => {
         this.meadow = data;
       });
+      this.apiService.getTreesOfMeadow(this.meadowId).subscribe((data: Tree[]) => {
+        this.treesOfMeadow = data;
+      });
     }
 
-    this.treesOfMeadow = Array(this.meadow?.Size[0]).fill(null).map(() => Array(this.meadow?.Size[1]).fill(null));
+    this.cells = Array(this.meadow?.Size[0]).fill(null).map(() => Array(this.meadow?.Size[1]).fill(null));
 
-    this.meadow?.TreeIds.forEach((treeId) => {
-      this.apiService.getTreeById(treeId).subscribe((data: Tree) => {
-        this.treesOfMeadow![data.Position.X][data.Position.Y] = data;
-      });
+    this.treesOfMeadow.forEach((tree) => {
+      this.cells![tree.Position.X][tree.Position.Y] = tree;
     });
   }
 }

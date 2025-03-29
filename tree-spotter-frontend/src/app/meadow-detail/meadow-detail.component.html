@@ -12,10 +12,16 @@
     <p>Loading meadow details...</p>
   </ng-template>
 
+<div *ngIf="cells; else loading">
   <div class="meadow-container">
     <div class="grid">
-      <div class="row" *ngFor="let row of treesOfMeadow">
-        <div class="cell" *ngFor="let cell of row">{{ cell.Age }}</div>
+      <div class="row" *ngFor="let row of cells">
+        <div class="cell" *ngFor="let cell of row">
+          <div *ngIf="cell !== null">
+            <img class="img-responsive" src="img/treeclipart.png">
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>

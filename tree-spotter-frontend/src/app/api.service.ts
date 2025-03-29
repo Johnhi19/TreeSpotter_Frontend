@@ -14,6 +14,10 @@ export class ApiService {
     return this.http.get('/api/meadows');
   }
 
+  getTreesOfMeadow(meadowId: number): Observable<any> {
+    return this.http.get(`/api/meadows/${meadowId}/trees`);
+  }
+
   getMeadowById(id: number): Observable<any> {
     return this.http.get(`/api/meadows/${id}`);
   }
