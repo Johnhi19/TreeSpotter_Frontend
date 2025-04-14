@@ -7,13 +7,7 @@ import { MeadowDetailComponent } from './meadow-detail/meadow-detail.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
-  {
-    path: 'trees', 
-    component: TreesComponent,
-    children: [
-      {path: ':id', component: TreesComponent}
-    ]
-  },
+  {path: 'trees/:id', component: TreesComponent},
   {path: 'meadow/:id', component: MeadowDetailComponent}
 ];
 

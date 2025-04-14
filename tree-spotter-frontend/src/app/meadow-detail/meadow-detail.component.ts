@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Meadow } from '../models/meadow';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Tree } from '../models/tree';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-meadow-detail',
@@ -17,25 +19,34 @@ export class MeadowDetailComponent {
   cells: Tree[][] | null = null;
   treesOfMeadow: Tree[] = [];
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     this.meadowId = idParam ? Number(idParam) : null;
 
     if (this.meadowId) {
-      this.apiService.getMeadowById(this.meadowId).subscribe((data: Meadow) => {
-        this.meadow = data;
-      });
-      this.apiService.getTreesOfMeadow(this.meadowId).subscribe((data: Tree[]) => {
-        this.treesOfMeadow = data;
+      forkJoin({
+        meadow: this.apiService.getMeadowById(this.meadowId),
+        trees: this.apiService.getTreesOfMeadow(this.meadowId)
+      }).subscribe(({ meadow, trees }) => {
+        this.meadow = meadow;
+        this.treesOfMeadow = trees;
+  
+        this.cells = Array(this.meadow?.Size[0])
+          .fill(null)
+          .map(() => Array(this.meadow?.Size[1]).fill(null));
+  
+        this.treesOfMeadow.forEach((tree) => {
+          if (tree.Position.X !== undefined && tree.Position.Y !== undefined) {
+            this.cells![tree.Position.X][tree.Position.Y] = tree;
+          }
+        });
       });
     }
+  }
 
-    this.cells = Array(this.meadow?.Size[0]).fill(null).map(() => Array(this.meadow?.Size[1]).fill(null));
-
-    this.treesOfMeadow.forEach((tree) => {
-      this.cells![tree.Position.X][tree.Position.Y] = tree;
-    });
+  onTreeClick(id: number) {
+    this.router.navigate([`/trees/${id}`]);
   }
 }

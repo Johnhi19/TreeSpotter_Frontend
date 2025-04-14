@@ -18,7 +18,7 @@
       <div class="row" *ngFor="let row of cells">
         <div class="cell" *ngFor="let cell of row">
           <div *ngIf="cell !== null">
-            <img class="img-responsive" src="img/treeclipart.png">
+            <img class="img-responsive" (click)="onTreeClick(cell.ID)" src="img/treeclipart.png">
           </div>
         </div>
       </div>
