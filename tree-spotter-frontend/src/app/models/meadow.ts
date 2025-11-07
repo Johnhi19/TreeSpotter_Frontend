@@ -1,7 +1,7 @@
 export interface Meadow {
-    ID: number;
-    Name: string;
-    TreeIds: number[];
-    Size: number[];
-    Location: string;
+    id: number;
+    name: string;
+    treeIds: number[];
+    size: number[];
+    location: string;
 }

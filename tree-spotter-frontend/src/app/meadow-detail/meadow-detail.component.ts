@@ -32,14 +32,14 @@ export class MeadowDetailComponent {
       }).subscribe(({ meadow, trees }) => {
         this.meadow = meadow;
         this.treesOfMeadow = trees;
-  
-        this.cells = Array(this.meadow?.Size[0])
+
+        this.cells = Array(this.meadow?.size[0])
           .fill(null)
-          .map(() => Array(this.meadow?.Size[1]).fill(null));
-  
+          .map(() => Array(this.meadow?.size[1]).fill(null));
+
         this.treesOfMeadow.forEach((tree) => {
-          if (tree.Position.X !== undefined && tree.Position.Y !== undefined) {
-            this.cells![tree.Position.X][tree.Position.Y] = tree;
+          if (tree.position.x !== undefined && tree.position.y !== undefined) {
+            this.cells![tree.position.x][tree.position.y] = tree;
           }
         });
       });

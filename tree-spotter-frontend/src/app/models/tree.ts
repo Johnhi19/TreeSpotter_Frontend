@@ -1,14 +1,14 @@
 export interface Position {
-    X: number;
-    Y: number;
+    x: number;
+    y: number;
   }
   
 export interface Tree {
-    Age: number;
-    ID: number;
-    MeadowId: number;
-    Position: Position;
-    Type: string;
+    age: number;
+    id: number;
+    meadowId: number;
+    position: Position;
+    type: string;
     _id: string;
   }
   
