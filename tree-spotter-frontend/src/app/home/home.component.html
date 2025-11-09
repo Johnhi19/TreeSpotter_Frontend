@@ -1,5 +1,5 @@
 <h1>Home Page</h1>
-<a class="welcome-text">Hello User welcome to the homepage</a>
+<a class="welcome-text">Hallo, willkommen zu unserer Baum-App!</a>
 
 <div *ngIf="meadowList && meadowList.length > 0" class="cards-container">
   <mat-card 
@@ -8,13 +8,10 @@
     appearance="outlined">
     <mat-card-header>
       <mat-card-title>{{ meadow.name }}</mat-card-title>
-      <mat-card-subtitle>{{ meadow.id }}</mat-card-subtitle>
+      <mat-card-subtitle>In {{ meadow.location }} mit {{ meadow.treeIds.length }} Bäumen und einer Fläche von {{ meadow.size[0] * meadow.size[1] }} m² </mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
-      <p>In {{ meadow.location }} with {{ meadow.treeIds.length }} trees and a size of {{ meadow.size[0] * meadow.size[1] }} m² </p>
-    </mat-card-actions>
-    <mat-card-actions>
-      <button mat-button (click)="navigateToMeadow(meadow.id)">More Information</button>
+      <button mat-button style="display: block; margin: 0 auto;" (click)="navigateToMeadow(meadow.id)">Mehr Informationen</button>
     </mat-card-actions>
   </mat-card>
 </div>
