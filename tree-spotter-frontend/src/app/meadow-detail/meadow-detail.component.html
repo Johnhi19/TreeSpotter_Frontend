@@ -1,27 +1,25 @@
-<h1>Meadow Details</h1>
-
 <div *ngIf="meadow; else loading">
-    <p><strong>ID:</strong> {{ meadow.id }}</p>
-    <p><strong>Name:</strong> {{ meadow.name }}</p>
-    <p><strong>Size:</strong> {{ meadow.size }}</p>
-    <p><strong>Location:</strong> {{ meadow.location }}</p>
-    <p><strong>Tree IDs:</strong> {{ meadow.treeIds }}</p>
-  </div>
-  
-  <ng-template #loading>
+    <h1>Details der Wiese {{ meadow.name }}</h1>
+    <h2>Liegt in {{ meadow.location }} mit {{ meadow.size[0] * meadow.size[1] }} m²</h2>
+</div>
+<ng-template #loading>
     <p>Loading meadow details...</p>
-  </ng-template>
-
+</ng-template>
 <div *ngIf="cells; else loading">
-  <div class="meadow-container">
-    <div class="grid">
-      <div class="row" *ngFor="let row of cells">
-        <div class="cell" *ngFor="let cell of row">
-          <div *ngIf="cell !== null">
-            <img class="img-responsive" (click)="onTreeClick(cell.id)" src="img/treeclipart.png">
-          </div>
+    <div class="meadow-container">
+        <div class="grid">
+            <div class="row" *ngFor="let row of cells; let rowIndex = index">
+                <div class="cell" *ngFor="let cell of row; let colIndex = index">
+                    <div *ngIf="cell !== null; else emptyCell">
+                        <img class="img-responsive" (click)="onTreeClick(cell.id)" src="img/treeclipart.png">
+                    </div>
+                    <ng-template #emptyCell>
+                        <div class="empty-cell" (click)="navigateToAddTree(rowIndex, colIndex)">
+                            <span class="plus-icon">+</span>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

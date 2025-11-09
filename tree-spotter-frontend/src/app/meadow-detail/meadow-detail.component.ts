@@ -49,4 +49,10 @@ export class MeadowDetailComponent {
   onTreeClick(id: number) {
     this.router.navigate([`/trees/${id}`]);
   }
+
+  navigateToAddTree(row: number, col: number) {
+    this.router.navigate(['/add-tree', this.meadowId], {
+      queryParams: { row: row, col: col }
+    });
+  }
 }

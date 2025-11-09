@@ -12,7 +12,7 @@
 <!-- <a>tree</a> -->
 
 <pre>{{ tree | json }}</pre>
-<p *ngIf="tree">{{ tree.Type }}</p>
+<p *ngIf="tree">{{ tree.type }}</p>
 <p *ngIf="!tree">Loading...</p>
 
 <button (click)="fetchData()">Fetch</button>

@@ -1,0 +1,19 @@
+<h1>Baum hinzufügen</h1>
+<div class="form-container">
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Sorte</mat-label>
+      <input matInput [(ngModel)]="tree.type" name="type" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Alter</mat-label>
+      <input matInput type="number" [(ngModel)]="tree.age" name="age" required>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit">Speichern</button>
+      <button mat-raised-button type="button" (click)="onCancel()">Abbrechen</button>
+    </div>
+  </form>
+</div>
