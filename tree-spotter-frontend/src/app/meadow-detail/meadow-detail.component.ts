@@ -38,16 +38,29 @@ export class MeadowDetailComponent {
         this.gridRows = this.meadow?.size[0] || 0;
         this.gridColumns = this.meadow?.size[1] || 0;
 
+        // Initialize empty grid
         this.cells = Array(this.gridRows)
           .fill(null)
           .map(() => Array(this.gridColumns).fill(null));
 
+        // Populate grid with trees
         this.treesOfMeadow.forEach((tree) => {
-          console.log(tree);
+
           if (tree.position.x !== undefined && tree.position.y !== undefined) {
+
+            console.log(`Placing tree with id ${tree.id} at position: (${tree.position.x}, ${tree.position.y})`);
+
+            if (tree.position.x >= this.gridRows || tree.position.y >= this.gridColumns) {
+
+              console.warn(`Tree position out of bounds: (${tree.position.x}, ${tree.position.y})`);
+              return;
+
+            }
             this.cells![tree.position.x][tree.position.y] = tree;
+
           }
         });
+
       });
     }
   }
