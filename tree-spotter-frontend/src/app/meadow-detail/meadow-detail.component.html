@@ -7,15 +7,16 @@
 </ng-template>
 <div *ngIf="cells; else loading">
     <div class="meadow-container">
-        <div class="grid">
+        <div class="grid" [style.grid-template-columns]="'repeat(' + gridColumns + ', 100px)'" 
+                          [style.grid-template-rows]="'repeat(' + gridRows + ', 100px)'">
             <div class="row" *ngFor="let row of cells; let rowIndex = index">
                 <div class="cell" *ngFor="let cell of row; let colIndex = index">
                     <div *ngIf="cell !== null; else emptyCell">
                         <img class="img-responsive" (click)="onTreeClick(cell.id)" src="img/treeclipart.png">
                     </div>
                     <ng-template #emptyCell>
-                        <div class="empty-cell" (click)="navigateToAddTree(rowIndex, colIndex)">
-                            <span class="plus-icon">+</span>
+                        <div class="empty-cell-container" (click)="navigateToAddTree(rowIndex, colIndex)">
+                            <img class="plus-img" src="img/plusclipart.png">
                         </div>
                     </ng-template>
                 </div>

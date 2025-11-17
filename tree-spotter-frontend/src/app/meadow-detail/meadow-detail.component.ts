@@ -18,6 +18,8 @@ export class MeadowDetailComponent {
   meadow: Meadow | null = null;
   cells: Tree[][] | null = null;
   treesOfMeadow: Tree[] = [];
+  gridColumns: number = 0;
+  gridRows: number = 0;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
@@ -33,11 +35,15 @@ export class MeadowDetailComponent {
         this.meadow = meadow;
         this.treesOfMeadow = trees;
 
-        this.cells = Array(this.meadow?.size[0])
+        this.gridRows = this.meadow?.size[0] || 0;
+        this.gridColumns = this.meadow?.size[1] || 0;
+
+        this.cells = Array(this.gridRows)
           .fill(null)
-          .map(() => Array(this.meadow?.size[1]).fill(null));
+          .map(() => Array(this.gridColumns).fill(null));
 
         this.treesOfMeadow.forEach((tree) => {
+          console.log(tree);
           if (tree.position.x !== undefined && tree.position.y !== undefined) {
             this.cells![tree.position.x][tree.position.y] = tree;
           }
