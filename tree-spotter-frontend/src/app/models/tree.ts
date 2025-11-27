@@ -5,6 +5,7 @@ export interface Position {
   
 export interface Tree {
     age: number;
+    plantDate: Date | null;
     id: number;
     meadowId: number;
     position: Position;
