@@ -1,22 +1,46 @@
-<h1>Trees List</h1>
+<div class="tree-detail-container">
+  <div *ngIf="tree; else loading">
+    <h1>Baum Details</h1>
+    
+    <div class="tree-card">
+      <div class="detail-row">
+        <span class="label">ID:</span>
+        <span class="value">{{ tree.id }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="label">Typ:</span>
+        <span class="value">{{ tree.type }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="label">Pflanzdatum:</span>
+        <span class="value">{{ tree.plantDate | date:'dd.MM.yyyy' }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="label">Wiesen-ID:</span>
+        <span class="value">{{ tree.meadowId }}</span>
+      </div>
+      
+      <div class="detail-row" *ngIf="tree.position">
+        <span class="label">Position:</span>
+        <span class="value">Zeile {{ tree.position.x + 1 }}, Spalte {{ tree.position.y + 1 }}</span>
+      </div>
+    </div>
+    
+    <div class="button-container">
+      <button class="back-button" (click)="goBackToMeadow()">
+        ← Zurück zur Wiese
+      </button>
+    </div>
+  </div>
 
-<!-- <ul>
-  <li *ngIf="tree$ | async as tree">
-    <strong>{{ tree }}</strong> (ID: 1)
-  </li>
-  <li *ngIf="!(tree$ | async)">
-    Loading...
-  </li>
-</ul> -->
-
-<!-- <a>tree</a> -->
-
-<pre>{{ tree | json }}</pre>
-<p *ngIf="tree">{{ tree.type }}</p>
-<p *ngIf="!tree">Loading...</p>
-
-<button (click)="fetchData()">Fetch</button>
-
-<a routerLink="/">Back to the home</a>
+  <ng-template #loading>
+    <div class="loading-container">
+      <p>Lade Baumdaten...</p>
+    </div>
+  </ng-template>
+</div>
 
 <router-outlet></router-outlet>
