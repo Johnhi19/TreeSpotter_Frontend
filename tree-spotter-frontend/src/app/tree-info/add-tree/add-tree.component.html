@@ -7,8 +7,10 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Alter</mat-label>
-      <input matInput type="number" [(ngModel)]="tree.age" name="age" required>
+      <mat-label>Pflanzdatum</mat-label>
+      <input matInput type="date" 
+            [ngModel]="tree.plantDate | date:'yyyy-MM-dd'" 
+            name="plantDate" required>
     </mat-form-field>
 
     <div class="button-group">

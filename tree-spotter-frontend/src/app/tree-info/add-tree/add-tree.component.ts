@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Tree } from '../../models/tree';
 
 @Component({
   selector: 'app-add-tree',
@@ -19,8 +20,7 @@ export class AddTreeComponent {
   tree = {
     name: '',
     type: '',
-    age: 0,
-    // Add other tree properties
+    plantDate: new Date(),
   };
 
   constructor(
@@ -41,22 +41,23 @@ export class AddTreeComponent {
   }
 
   onSubmit() {
-    if (this.meadowId) {
-      const treeData = {
-        ...this.tree,
-        position: this.position
-      };
-      
-      // this.apiService.addTreeToMeadow(this.meadowId, treeData).subscribe({
-      //   next: (response: any) => {
-      //     console.log('Tree added successfully', response);
-      //     this.router.navigate(['/meadow', this.meadowId]);
-      //   },
-      //   error: (error: any) => {
-      //     console.error('Error adding tree', error);
-      //   }
-      // });
-    }
+    const newTree: Tree = {
+      plantDate: this.tree.plantDate,
+      meadowId: this.meadowId!,
+      position: { x: this.position.row, y: this.position.col },
+      type: this.tree.type,
+      _id: 0
+    };
+    
+    this.apiService.insertTree(newTree).subscribe({
+      next: (response: any) => {
+        console.log('Tree added successfully', response);
+        this.router.navigate(['/meadow', this.meadowId]);
+      },
+      error: (error: any) => {
+        console.error('Error adding tree', error);
+      }
+    });
   }
 
   onCancel() {
