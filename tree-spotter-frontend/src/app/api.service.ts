@@ -25,4 +25,8 @@ export class ApiService {
   getTreeById(id: number): Observable<any> {
     return this.http.get<Tree>(`/api/trees/${id}`);
   }
+
+  insertTree(tree: Tree): Observable<any> {
+    return this.http.post('/api/trees', tree);
+  }
 }
