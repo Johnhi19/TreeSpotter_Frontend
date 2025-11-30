@@ -8,6 +8,6 @@ export interface Tree {
     meadowId: number;
     position: Position;
     type: string;
-    _id: number;
+    id: number;
   }
   

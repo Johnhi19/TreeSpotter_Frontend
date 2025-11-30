@@ -46,7 +46,7 @@ export class AddTreeComponent {
       meadowId: this.meadowId!,
       position: { x: this.position.row, y: this.position.col },
       type: this.tree.type,
-      _id: 0
+      id: 0
     };
     
     this.apiService.insertTree(newTree).subscribe({

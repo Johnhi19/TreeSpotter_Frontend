@@ -48,7 +48,7 @@ export class MeadowDetailComponent {
 
           if (tree.position.x !== undefined && tree.position.y !== undefined) {
 
-            console.log(`Placing tree with id ${tree._id} at position: (${tree.position.x}, ${tree.position.y})`);
+            console.log(`Placing tree with id ${tree.id} at position: (${tree.position.x}, ${tree.position.y})`);
 
             if (tree.position.x >= this.gridRows || tree.position.y >= this.gridColumns) {
 
