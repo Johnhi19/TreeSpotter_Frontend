@@ -29,4 +29,8 @@ export class ApiService {
   insertTree(tree: Tree): Observable<any> {
     return this.http.post('/api/trees', tree);
   }
+
+  deleteTree(treeId: number): Observable<any> {
+  return this.http.delete(`/api/trees/${treeId}`);
+}
 }
