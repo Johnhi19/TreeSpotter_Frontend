@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Meadow } from '../models/meadow';
+import { Meadow } from '../../models/meadow';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Tree } from '../models/tree';
+import { Tree } from '../../models/tree';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -79,5 +79,11 @@ export class MeadowDetailComponent {
 
   navigateToHome() {
     this.router.navigate(['/']);
+  }
+
+  deleteMeadow() {
+    // Currently, there is no API endpoint to delete a meadow.
+    // This function is a placeholder for future implementation.
+    console.log('Delete meadow functionality is not implemented yet.');
   }
 }
