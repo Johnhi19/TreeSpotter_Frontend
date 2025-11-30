@@ -24,4 +24,8 @@ export class HomeComponent {
   navigateToMeadow(id: number) {
     this.router.navigate([`/meadow/${id}`]);
   }
+
+  navigateToAddMeadow() {
+    this.router.navigate(['/add-meadow']);
+  }
 }
