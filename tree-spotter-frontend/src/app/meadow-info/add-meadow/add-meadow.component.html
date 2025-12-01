@@ -1,1 +1,62 @@
-<p>add-meadow works!</p>
+<h1>Wiese hinzufügen</h1>
+<div class="form-container">
+
+  <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input 
+        matInput 
+        [(ngModel)]="meadow.name" 
+        name="name" 
+        required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Standort</mat-label>
+      <input 
+        matInput 
+        [(ngModel)]="meadow.location" 
+        name="location" 
+        required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Länge</mat-label>
+      <input 
+        matInput 
+        type="number"
+        [(ngModel)]="meadow.size[0]" 
+        name="sizeLength" 
+        required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Breite</mat-label>
+      <input 
+        matInput 
+        type="number"
+        [(ngModel)]="meadow.size[1]" 
+        name="sizeWidth" 
+        required>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit"
+        [disabled]="form.invalid">
+        Speichern
+      </button>
+
+      <button 
+        mat-raised-button 
+        type="button" 
+        (click)="onCancel()">
+        Abbrechen
+      </button>
+    </div>
+
+  </form>
+</div>
