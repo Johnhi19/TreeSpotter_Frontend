@@ -3,13 +3,15 @@ import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Meadow } from '../../models/meadow';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Tree } from '../../models/tree';
 import { forkJoin } from 'rxjs';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-meadow-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, MatDialogModule],
   templateUrl: './meadow-detail.component.html',
   styleUrl: './meadow-detail.component.scss'
 })
@@ -21,7 +23,7 @@ export class MeadowDetailComponent {
   gridColumns: number = 0;
   gridRows: number = 0;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private dialog: MatDialog) {}
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -82,8 +84,30 @@ export class MeadowDetailComponent {
   }
 
   deleteMeadow() {
-    // Currently, there is no API endpoint to delete a meadow.
-    // This function is a placeholder for future implementation.
-    console.log('Delete meadow functionality is not implemented yet.');
+
+    if (!this.meadowId) return;
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        title: 'Wiese löschen',
+        message: 'Möchten Sie diese Wiese mit allen Bäumen wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.apiService.deleteMeadow(this.meadowId!).subscribe({
+          next: () => {
+            console.log('Meadow deleted successfully');
+            this.navigateToHome();
+          },
+          error: (error) => {
+            console.error('Error deleting meadow:', error);
+            alert('Fehler beim Löschen der Wiese');
+          }
+        });
+      }
+    });
   }
 }

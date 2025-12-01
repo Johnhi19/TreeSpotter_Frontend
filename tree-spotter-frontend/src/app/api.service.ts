@@ -38,4 +38,8 @@ export class ApiService {
   deleteTree(treeId: number): Observable<any> {
     return this.http.delete(`/api/trees/${treeId}`);
   }
+
+  deleteMeadow(meadowId: number): Observable<any> {
+    return this.http.delete(`/api/meadows/${meadowId}`);
+  }
 }
