@@ -42,4 +42,12 @@ export class ApiService {
   deleteMeadow(meadowId: number): Observable<any> {
     return this.http.delete(`/api/meadows/${meadowId}`);
   }
+
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(`/api/login`, { 'username': username, 'password': password });
+  }
+
+  register(username: string, password: string): Observable<any> {
+    return this.http.post(`/api/register`, { 'username': username, 'password': password });
+  }
 }
