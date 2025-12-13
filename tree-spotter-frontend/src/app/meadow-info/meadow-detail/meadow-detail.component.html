@@ -3,8 +3,10 @@
     <h2>Liegt in {{ meadow.location }} mit {{ meadow.size[0] * meadow.size[1] }} m²</h2>
 </div>
 <ng-template #loading>
-    <p>Loading meadow details...</p>
-</ng-template>
+    <div class="loading-container">
+      <p>Lade Wiesendaten...</p>
+    </div>
+  </ng-template>
 <div class="spacer">
     <div *ngIf="cells; else loading">
         <div class="meadow-container">
