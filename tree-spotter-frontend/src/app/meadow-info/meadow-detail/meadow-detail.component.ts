@@ -68,9 +68,7 @@ export class MeadowDetailComponent {
   }
 
   onTreeClick(id: number) {
-    this.router.navigate([`/trees/${id}`], {
-      queryParams: { meadowId: this.meadowId }
-    });
+    this.router.navigate([`/trees/${id}`]);
   }
 
   navigateToAddTree(row: number, col: number) {

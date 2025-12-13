@@ -16,19 +16,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 export class TreesComponent {
   tree: Tree | null = null;
   treeId: number | null = null;
-  meadowId: number | null = null;
-
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     this.treeId = idParam ? Number(idParam) : null;
-
-    // Get meadowId from query params
-    this.route.queryParams.subscribe(params => {
-      this.meadowId = params['meadowId'] ? Number(params['meadowId']) : null;
-    });
 
     if (this.treeId){
       console.log(`Fetching data for tree ID: ${this.treeId}`);
@@ -37,8 +30,8 @@ export class TreesComponent {
   }
 
   goBackToMeadow() {
-    if (this.meadowId) {
-      this.router.navigate(['/meadow', this.meadowId]);
+    if (this.tree?.meadowId) {
+      this.router.navigate(['/meadow', this.tree.meadowId]);
     } else {
       this.router.navigate(['/']);
     }
