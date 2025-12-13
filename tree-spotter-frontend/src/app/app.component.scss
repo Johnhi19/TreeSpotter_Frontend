@@ -7,9 +7,32 @@
     border-radius: 5px;
     font-weight: bold;
     transition: background 0.3s;
+    margin-left: 5px;
   
     &:hover {
       background: #f0f0f0;
     }
   }
+
+.logout-button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+    margin-right: 5px;
+  
+    &:hover {
+      background: darkred;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
   
