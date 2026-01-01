@@ -13,7 +13,8 @@ FROM node:20-alpine
 
 WORKDIR /app
 RUN npm install -g serve
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/dist/tree-spotter-frontend ./dist
 
 EXPOSE 4200
-CMD ["serve", "-s", "dist", "-l", "4200"]
+
+CMD ["serve", "-s", "dist/tree-spotter-frontend", "-l", "4200"]
