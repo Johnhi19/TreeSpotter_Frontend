@@ -27,6 +27,9 @@
         matInput 
         type="number"
         min="1"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        onkeydown="return !['e','E','+','-','.'].includes(event.key)"
         [(ngModel)]="meadow.size[0]" 
         name="sizeLength" 
         required>
@@ -38,6 +41,9 @@
         matInput 
         type="number"
         min="1"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        onkeydown="return !['e','E','+','-','.'].includes(event.key)"
         [(ngModel)]="meadow.size[1]" 
         name="sizeWidth" 
         required>
