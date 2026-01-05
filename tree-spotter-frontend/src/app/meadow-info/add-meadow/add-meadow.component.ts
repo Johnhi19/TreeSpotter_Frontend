@@ -18,7 +18,7 @@ export class AddMeadowComponent {
   meadow = {
     name: '',
     location: '',
-    size: [0, 0],
+    size: [1, 1],
   };
 
   constructor(
