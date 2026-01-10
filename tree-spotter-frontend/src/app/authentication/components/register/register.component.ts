@@ -16,12 +16,13 @@ import { MatInputModule } from '@angular/material/input';
 export class RegisterComponent {
   username: string = '';
   password: string = '';
+  email: string = '';
   errorMessage: string = '';
 
   constructor(private apiService: ApiService, private router: Router) {}
 
   onSubmit(){
-    this.apiService.register(this.username, this.password).subscribe({
+    this.apiService.register(this.username, this.password, this.email).subscribe({
       next: (response: any) => {
         console.log('Registration successful', response);
         this.router.navigate(['/login']);
