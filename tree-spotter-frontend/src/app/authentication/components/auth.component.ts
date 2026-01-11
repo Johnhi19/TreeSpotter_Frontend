@@ -7,10 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { ApiService } from '../../api.service';
 import { AuthService } from '../authService';
+import {TranslatePipe} from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-auth',
-  imports: [CommonModule, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, TranslatePipe],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
@@ -30,11 +32,7 @@ export class AuthComponent {
       },
       error: (error: any) => {
         console.error('Error during login', error);
-        if (error.status === 401) {
-          this.errorMessage = "Unauthorized: Please check your credentials.";
-        } else {
-          this.errorMessage = "An error occurred during login. Please try again.";
-        }
+        this.errorMessage = error?.error?.code ?? 'Ein unerklärlicher Fehler ist aufgetreten.';
       }
     });
   }

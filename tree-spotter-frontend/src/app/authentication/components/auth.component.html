@@ -43,6 +43,6 @@
   </form>
 
   <div *ngIf="errorMessage" class="error">
-    {{ errorMessage }}
+    {{ 'errors.' + errorMessage | translate }}
   </div>
 </div>
