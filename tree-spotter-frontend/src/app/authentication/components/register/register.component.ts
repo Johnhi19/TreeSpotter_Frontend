@@ -6,10 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, TranslatePipe],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -29,7 +30,7 @@ export class RegisterComponent {
       },
       error: (error: any) => {
         console.error('Error during registration', error);
-        this.errorMessage = "An error occurred during registration. Please try again.";
+        this.errorMessage = error?.error?.code ?? 'Ein unerklärlicher Fehler ist aufgetreten.';
       }
     });
   }
