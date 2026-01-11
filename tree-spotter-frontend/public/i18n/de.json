@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "USERNAME_TAKEN": "Benutzername bereits vergeben",
+    "EMAIL_TAKEN": "E-Mail bereits registriert",
+    "INVALID_CREDENTIALS": "Ungültiger Benutzername oder Passwort",
+    "DATABASE_ISSUE": "Es gab ein Problem bei der Verbindung zur Datenbank",
+    "UNKNOWN_ERROR": "Ein unbekannter Fehler ist aufgetreten"
+  }
+}

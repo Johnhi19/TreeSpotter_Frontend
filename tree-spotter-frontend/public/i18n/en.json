@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "USERNAME_TAKEN": "Username already taken",
+    "EMAIL_TAKEN": "Email already registered",
+    "INVALID_CREDENTIALS": "Invalid username or password",
+    "DATABASE_ISSUE": "There was a problem connecting to the database",
+    "UNKNOWN_ERROR": "An unknown error occurred"
+  }
+}
