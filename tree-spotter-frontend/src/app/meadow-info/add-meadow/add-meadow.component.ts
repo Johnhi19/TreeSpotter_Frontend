@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../api.service';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Meadow } from '../../models/meadow';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-meadow',
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule],
+  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, TranslatePipe],
   templateUrl: './add-meadow.component.html',
   styleUrl: './add-meadow.component.scss'
 })
