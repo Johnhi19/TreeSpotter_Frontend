@@ -17,12 +17,24 @@ import {TranslatePipe} from '@ngx-translate/core';
 export class RegisterComponent {
   username: string = '';
   password: string = '';
+  confirmPassword: string = '';
   email: string = '';
   errorMessage: string = '';
 
   constructor(private apiService: ApiService, private router: Router) {}
 
   onSubmit(){
+    if (this.password !== this.confirmPassword) {
+      this.errorMessage = 'PASSWORT_MISMATCH';
+      return;
+    }
+
+    const emailRegex = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+    if (!this.email.match(emailRegex)) {
+      this.errorMessage = 'VALID_EMAIL_REQUIRED';
+      return;
+    }
+
     this.apiService.register(this.username, this.password, this.email).subscribe({
       next: (response: any) => {
         console.log('Registration successful', response);
