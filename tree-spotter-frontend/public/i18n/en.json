@@ -4,6 +4,18 @@
     "EMAIL_TAKEN": "Email already registered",
     "INVALID_CREDENTIALS": "Invalid username or password",
     "DATABASE_ISSUE": "There was a problem connecting to the database",
-    "UNKNOWN_ERROR": "An unknown error occurred"
+    "UNKNOWN_ERROR": "An unknown error occurred",
+    "PASSWORT_MISMATCH": "Passwords do not match",
+    "VALID_EMAIL_REQUIRED": "Please enter a valid email address"
+  },
+  "labels": {
+    "USERNAME": "Username",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "REGISTER": "Register",
+    "SUBMIT": "Submit",
+    "CANCEL": "Cancel",
+    "LOGIN": "Login"
   }
 }

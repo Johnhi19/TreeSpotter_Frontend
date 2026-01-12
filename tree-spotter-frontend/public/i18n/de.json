@@ -4,6 +4,18 @@
     "EMAIL_TAKEN": "E-Mail bereits registriert",
     "INVALID_CREDENTIALS": "Ungültiger Benutzername oder Passwort",
     "DATABASE_ISSUE": "Es gab ein Problem bei der Verbindung zur Datenbank",
-    "UNKNOWN_ERROR": "Ein unbekannter Fehler ist aufgetreten"
+    "UNKNOWN_ERROR": "Ein unbekannter Fehler ist aufgetreten",
+    "PASSWORT_MISMATCH": "Die Passwörter stimmen nicht überein",
+    "VALID_EMAIL_REQUIRED": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+  },
+  "labels": {
+    "USERNAME": "Benutzername",
+    "EMAIL": "E-Mail",
+    "PASSWORD": "Passwort",
+    "CONFIRM_PASSWORD": "Passwort bestätigen",
+    "REGISTER": "Registrieren",
+    "SUBMIT": "Speichern",
+    "CANCEL": "Abbrechen",
+    "LOGIN": "Anmelden"
   }
 }
