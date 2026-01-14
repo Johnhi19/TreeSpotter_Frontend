@@ -21,8 +21,8 @@ export interface ConfirmDialogData {
         <p>{{ data.message }}</p>
       </div>
       <div class="dialog-actions">
-        <button class="cancel-button" (click)="onCancel()">Abbrechen</button>
-        <button class="confirm-button" (click)="onConfirm()">Löschen</button>
+        <button class="cancel-button" (click)="onCancel()">{{ 'labels.CANCEL' | translate }}</button>
+        <button class="confirm-button" (click)="onConfirm()">{{ 'labels.DELETE' | translate }}</button>
       </div>
     </div>
   `,
