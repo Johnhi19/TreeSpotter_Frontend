@@ -25,7 +25,7 @@ export class RegisterComponent {
 
   onSubmit(){
     if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'PASSWORT_MISMATCH';
+      this.errorMessage = 'PASSWORD_MISMATCH';
       return;
     }
 
