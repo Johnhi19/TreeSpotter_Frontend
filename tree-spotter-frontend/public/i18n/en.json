@@ -1,21 +1,22 @@
 {
   "errors": {
-    "USERNAME_TAKEN": "Username already taken",
+    "DATABASE_ISSUE": "There was a problem connecting to the database",
     "EMAIL_TAKEN": "Email already registered",
     "INVALID_CREDENTIALS": "Invalid username or password",
-    "DATABASE_ISSUE": "There was a problem connecting to the database",
+    "PASSWORD_MISMATCH": "Passwords do not match",
     "UNKNOWN_ERROR": "An unknown error occurred",
-    "PASSWORT_MISMATCH": "Passwords do not match",
+    "USERNAME_TAKEN": "Username already taken",
     "VALID_EMAIL_REQUIRED": "Please enter a valid email address"
   },
   "labels": {
-    "USERNAME": "Username",
-    "EMAIL": "Email",
-    "PASSWORD": "Password",
+    "CANCEL": "Cancel",
     "CONFIRM_PASSWORD": "Confirm Password",
+    "DELETE": "Delete",
+    "EMAIL": "Email",
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
     "REGISTER": "Register",
     "SUBMIT": "Submit",
-    "CANCEL": "Cancel",
-    "LOGIN": "Login"
+    "USERNAME": "Username"
   }
 }

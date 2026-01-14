@@ -1,21 +1,22 @@
 {
   "errors": {
-    "USERNAME_TAKEN": "Benutzername bereits vergeben",
+    "DATABASE_ISSUE": "Es gab ein Problem bei der Verbindung zur Datenbank",
     "EMAIL_TAKEN": "E-Mail bereits registriert",
     "INVALID_CREDENTIALS": "Ungültiger Benutzername oder Passwort",
-    "DATABASE_ISSUE": "Es gab ein Problem bei der Verbindung zur Datenbank",
+    "PASSWORD_MISMATCH": "Die Passwörter stimmen nicht überein",
     "UNKNOWN_ERROR": "Ein unbekannter Fehler ist aufgetreten",
-    "PASSWORT_MISMATCH": "Die Passwörter stimmen nicht überein",
+    "USERNAME_TAKEN": "Benutzername bereits vergeben",
     "VALID_EMAIL_REQUIRED": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
   },
   "labels": {
-    "USERNAME": "Benutzername",
-    "EMAIL": "E-Mail",
-    "PASSWORD": "Passwort",
+    "CANCEL": "Abbrechen",
     "CONFIRM_PASSWORD": "Passwort bestätigen",
+    "DELETE": "Löschen",
+    "EMAIL": "E-Mail",
+    "LOGIN": "Anmelden",
+    "PASSWORD": "Passwort",
     "REGISTER": "Registrieren",
     "SUBMIT": "Speichern",
-    "CANCEL": "Abbrechen",
-    "LOGIN": "Anmelden"
+    "USERNAME": "Benutzername"
   }
 }
