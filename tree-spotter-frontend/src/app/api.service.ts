@@ -11,12 +11,24 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getBasicMeadowInfo(): Observable<any> {
-    return this.http.get('/api/meadows');
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(`/api/login`, { 'username': username, 'password': password });
   }
 
-  getTreesOfMeadow(meadowId: number): Observable<any> {
-    return this.http.get(`/api/meadows/${meadowId}/trees`);
+  register(username: string, password: string, email: string): Observable<any> {
+    return this.http.post(`/api/register`, { 'username': username, 'password': password, 'email': email });
+  }
+
+  deleteMeadow(meadowId: number): Observable<any> {
+    return this.http.delete(`/api/meadows/${meadowId}`);
+  }
+
+  deleteTree(treeId: number): Observable<any> {
+    return this.http.delete(`/api/trees/${treeId}`);
+  }
+
+  getBasicMeadowInfo(): Observable<any> {
+    return this.http.get('/api/meadows');
   }
 
   getMeadowById(id: number): Observable<any> {
@@ -27,6 +39,10 @@ export class ApiService {
     return this.http.get<Tree>(`/api/trees/${id}`);
   }
 
+  getTreesOfMeadow(meadowId: number): Observable<any> {
+    return this.http.get(`/api/meadows/${meadowId}/trees`);
+  }
+
   insertMeadow(meadow: Meadow): Observable<any> {
     return this.http.post('/api/meadows', meadow);
   }
@@ -35,19 +51,11 @@ export class ApiService {
     return this.http.post('/api/trees', tree);
   }
 
-  deleteTree(treeId: number): Observable<any> {
-    return this.http.delete(`/api/trees/${treeId}`);
+  updateMeadow(meadow: Meadow): Observable<any> {
+    return this.http.put(`/api/meadows/${meadow.id}`, meadow);
   }
 
-  deleteMeadow(meadowId: number): Observable<any> {
-    return this.http.delete(`/api/meadows/${meadowId}`);
-  }
-
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(`/api/login`, { 'username': username, 'password': password });
-  }
-
-  register(username: string, password: string, email: string): Observable<any> {
-    return this.http.post(`/api/register`, { 'username': username, 'password': password, 'email': email });
+  updateTree(tree: Tree): Observable<any> {
+    return this.http.put(`/api/trees/${tree.id}`, tree);
   }
 }
