@@ -9,14 +9,21 @@
     "VALID_EMAIL_REQUIRED": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
   },
   "labels": {
+    "BACK_TO_MEADOW": "Zurück zur Wiese",
     "CANCEL": "Abbrechen",
     "CONFIRM_PASSWORD": "Passwort bestätigen",
     "DELETE": "Löschen",
+    "DELETE_TREE": "Baum löschen",
     "EMAIL": "E-Mail",
+    "LOAD_TREE_DATA": "Lade Baumdaten",
     "LOGIN": "Anmelden",
     "PASSWORD": "Passwort",
+    "PLANT_DATE": "Pflanzdatum",
+    "POSITION": "Position",
     "REGISTER": "Registrieren",
     "SUBMIT": "Speichern",
+    "TREE_DETAILS": "Baum Details",
+    "TYPE": "Typ",
     "USERNAME": "Benutzername"
   }
 }

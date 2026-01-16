@@ -9,14 +9,21 @@
     "VALID_EMAIL_REQUIRED": "Please enter a valid email address"
   },
   "labels": {
+    "BACK_TO_MEADOW": "Back to Meadow",
     "CANCEL": "Cancel",
     "CONFIRM_PASSWORD": "Confirm Password",
     "DELETE": "Delete",
+    "DELETE_TREE": "Delete Tree",
     "EMAIL": "Email",
+    "LOAD_TREE_DATA": "Loading Tree Data",
     "LOGIN": "Login",
     "PASSWORD": "Password",
+    "PLANT_DATE": "Plantdate",
+    "POSITION": "Position",
     "REGISTER": "Register",
     "SUBMIT": "Submit",
+    "TREE_DETAILS": "Tree Details",
+    "TYPE": "Type",
     "USERNAME": "Username"
   }
 }
