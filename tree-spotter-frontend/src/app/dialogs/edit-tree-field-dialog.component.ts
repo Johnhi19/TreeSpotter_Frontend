@@ -12,7 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   template: `
     <div class="dialog-card">
       <div class="dialog-header">
-        <h2>{{ 'labels.EDIT' | translate }} {{ data.name }}</h2>
+        <h2>{{ 'labels.EDIT' | translate }} {{ data.label }}</h2>
       </div>
 
       <div class="dialog-content">
@@ -34,7 +34,6 @@ export class EditTreeFieldDialogComponent {
   constructor(
     private dialogRef: MatDialogRef<EditTreeFieldDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
-      name: string;
       label: string;
       value: any;
     }
