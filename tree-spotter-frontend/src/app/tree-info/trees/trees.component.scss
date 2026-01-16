@@ -33,6 +33,23 @@
   }
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background: #f0f0f0;
+}
+
+.edit-icon {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.clickable:hover .edit-icon {
+  opacity: 1;
+}
+
 .label {
   font-weight: 600;
   color: #2e7d32;
