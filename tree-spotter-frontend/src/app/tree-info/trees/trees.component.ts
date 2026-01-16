@@ -59,7 +59,7 @@ export class TreesComponent {
     });
   }
 
-  editField(label: string, currentValue: any) {
+  editField(name: string,label: string, currentValue: any) {
 
     let dialogRef;
 
@@ -67,6 +67,7 @@ export class TreesComponent {
       
       dialogRef = this.dialog.open(EditTreeDateDialogComponent, {
         data: {
+          name,
           label,
           value: structuredClone(currentValue) // avoid mutating original until save
         }
@@ -76,6 +77,7 @@ export class TreesComponent {
 
       dialogRef = this.dialog.open(EditTreeFieldDialogComponent, {
         data: {
+          name,
           label,
           value: structuredClone(currentValue) // avoid mutating original until save
         }

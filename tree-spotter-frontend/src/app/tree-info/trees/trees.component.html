@@ -3,13 +3,13 @@
     <h1>{{ 'labels.TREE_DETAILS' | translate }}</h1>
     
     <div class="tree-card">
-      <div class="detail-row clickable" (click)="editField('type', tree.type)">
+      <div class="detail-row clickable" (click)="editField({{ 'labels.TYPE' | translate }}, 'type', tree.type)">
         <span class="label">{{ 'labels.TYPE' | translate }}:</span>
         <span class="value">{{ tree.type }}</span>
         <span class="edit-icon">✏️</span>
       </div>
       
-      <div class="detail-row clickable" (click)="editField('plantDate', tree.plantDate)">
+      <div class="detail-row clickable" (click)="editField({{ 'labels.PLANT_DATE' | translate }}, 'plantDate', tree.plantDate)">
         <span class="label">{{ 'labels.PLANT_DATE' | translate }}:</span>
         <span class="value">{{ tree.plantDate | date:'dd.MM.yyyy' }}</span>
         <span class="edit-icon">✏️</span>
