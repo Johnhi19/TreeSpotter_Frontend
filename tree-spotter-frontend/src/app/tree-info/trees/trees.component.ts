@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { Tree } from '../../models/tree';
 import { ApiService } from '../../api.service';
 import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog.component';
@@ -9,6 +8,7 @@ import { EditTreeFieldDialogComponent } from '../../dialogs/edit-tree-field-dial
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TranslatePipe } from '@ngx-translate/core';
 import { EditTreeDateDialogComponent } from '../../dialogs/edit-tree-date-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-trees',
@@ -20,7 +20,7 @@ export class TreesComponent {
   tree: Tree | null = null;
   treeId: number | null = null;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private dialog: MatDialog) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private dialog: MatDialog, private translate: TranslateService) {}
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -59,16 +59,16 @@ export class TreesComponent {
     });
   }
 
-  editField(name: string,label: string, currentValue: any) {
+  editField(label: string, field: string, currentValue: any) {
+    const translatedLabel = this.translate.instant(label);
 
     let dialogRef;
 
-    if (label === 'plantDate' && currentValue) {
+    if (field === 'plantDate' && currentValue) {
       
       dialogRef = this.dialog.open(EditTreeDateDialogComponent, {
         data: {
-          name,
-          label,
+          label: translatedLabel,
           value: structuredClone(currentValue) // avoid mutating original until save
         }
       });
@@ -77,8 +77,7 @@ export class TreesComponent {
 
       dialogRef = this.dialog.open(EditTreeFieldDialogComponent, {
         data: {
-          name,
-          label,
+          label: translatedLabel,
           value: structuredClone(currentValue) // avoid mutating original until save
         }
       });
@@ -89,10 +88,10 @@ export class TreesComponent {
       if (!newValue || !this.tree) return; // user cancelled or no tree
 
       // 1️⃣ Update the local tree object
-      if (label === 'plantDate') {
+      if (field === 'plantDate') {
         newValue = new Date(newValue);
       }
-      (this.tree as any)[label] = newValue;
+      (this.tree as any)[field] = newValue;
 
       // 2️⃣ Send the WHOLE updated tree to backend
       this.apiService.updateTree(this.tree).subscribe({
