@@ -6,7 +6,7 @@ import { Meadow } from '../../models/meadow';
 import { CommonModule } from '@angular/common';
 import { Tree } from '../../models/tree';
 import { forkJoin } from 'rxjs';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
