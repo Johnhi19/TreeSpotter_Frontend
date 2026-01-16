@@ -3,15 +3,16 @@ import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-tree-date-dialog',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, TranslatePipe],
   template: `
     <div class="dialog-card">
       <div class="dialog-header">
-        <h2>Edit {{ data.label }}</h2>
+        <h2>{{ 'labels.EDIT' | translate }} {{ data.label }}</h2>
       </div>
 
       <div class="dialog-content">
@@ -25,8 +26,8 @@ import { MatInputModule } from '@angular/material/input';
       </div>
     
       <div class="dialog-actions">
-        <button class="cancel-button" (click)="cancel()">Cancel</button>
-        <button class="confirm-button" (click)="save()">Save</button>
+        <button class="cancel-button" (click)="cancel()">{{ 'labels.CANCEL' | translate }}</button>
+        <button class="confirm-button" (click)="save()">{{ 'labels.SAVE' | translate }}</button>
       </div>
     </div>
   `,
