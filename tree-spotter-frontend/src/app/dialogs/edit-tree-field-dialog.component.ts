@@ -10,22 +10,28 @@ import { TranslatePipe } from '@ngx-translate/core';
   standalone: true,
   imports: [FormsModule, MatFormFieldModule, MatInputModule, TranslatePipe],
   template: `
-    <div class="dialog-card">
-      <div class="dialog-header">
-        <h2>{{ 'labels.EDIT' | translate }} {{ data.label }}</h2>
-      </div>
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+      <div class="dialog-card">
+        <div class="dialog-header">
+          <h2>{{ 'labels.EDIT' | translate }} {{ data.label }}</h2>
+        </div>
 
-      <div class="dialog-content">
-        <mat-form-field appearance="outline">
-          <input matInput [(ngModel)]="data.value" />
-        </mat-form-field>
+        <div class="dialog-content">
+          <mat-form-field appearance="outline">
+            <input 
+              matInput 
+              [(ngModel)]="data.value" 
+              name="value" 
+            />
+          </mat-form-field>
+        </div>
+      
+        <div class="dialog-actions">
+          <button type="button" class="cancel-button" (click)="cancel()">{{ 'labels.CANCEL' | translate }}</button>
+          <button type="submit" class="confirm-button" (click)="save()">{{ 'labels.SUBMIT' | translate }}</button>
+        </div>
       </div>
-    
-      <div class="dialog-actions">
-        <button class="cancel-button" (click)="cancel()">{{ 'labels.CANCEL' | translate }}</button>
-        <button class="confirm-button" (click)="save()">{{ 'labels.SUBMIT' | translate }}</button>
-      </div>
-    </div>
+    </form>
   `,
   styleUrl: './edit-tree-dialog.component.scss'
 })
@@ -38,6 +44,10 @@ export class EditTreeFieldDialogComponent {
       value: any;
     }
   ) {}
+
+  onSubmit() {
+    this.save();
+  }
 
   save() {
     this.dialogRef.close(this.data.value);
