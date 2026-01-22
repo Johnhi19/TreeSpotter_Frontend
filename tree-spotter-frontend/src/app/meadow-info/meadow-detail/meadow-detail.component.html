@@ -6,8 +6,14 @@
     <div class="loading-container">
       <p>Lade Wiesendaten...</p>
     </div>
-  </ng-template>
+</ng-template>
 <div class="spacer">
+    <div class="button-container">
+        <button class="edit-button" (click)="editMeadow()">
+            Wiese bearbeiten
+        </button>
+    </div>
+
     <div *ngIf="cells; else loading">
         <div class="meadow-container">
             <div class="grid" [style.grid-template-columns]="'repeat(' + gridColumns + ', 100px)'" 

@@ -8,6 +8,7 @@ import { Tree } from '../../models/tree';
 import { forkJoin } from 'rxjs';
 import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { EditMeadowDialogComponent } from '../../dialogs/edit-meadow-dialog.component';
 
 @Component({
   selector: 'app-meadow-detail',
@@ -108,6 +109,38 @@ export class MeadowDetailComponent {
           }
         });
       }
+    });
+  }
+
+  editMeadow() {
+    const dialogRef = this.dialog.open(EditMeadowDialogComponent, {
+      data: {
+        name: structuredClone(this.meadow?.name),
+        location: structuredClone(this.meadow?.location),
+        size: structuredClone(this.meadow?.size)
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(updatedMeadow => {
+      if (!updatedMeadow || !this.meadow) return;
+      (this.meadow as Meadow)["name"] = updatedMeadow.name;
+      (this.meadow as Meadow)["location"] = updatedMeadow.location;
+
+      let reload = false;
+      if (updatedMeadow.size[0] !== this.meadow.size[0] || updatedMeadow.size[1] !== this.meadow.size[1]) {
+        reload = true;
+      }
+      (this.meadow as Meadow)["size"] = updatedMeadow.size;
+
+      this.apiService.updateMeadow(this.meadow).subscribe({
+        next: () => {
+          console.log('Meadow updated');
+          if (reload) {
+            location.reload();
+          }
+        },
+        error: err => console.error(err)
+      });
     });
   }
 }
