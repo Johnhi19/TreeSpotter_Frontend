@@ -53,7 +53,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       </div>
     </form>
   `,
-  styleUrl: './edit-tree-dialog.component.scss'
+  styleUrl: './edit-dialog.component.scss'
 })
 export class EditTreePositionDialogComponent {
 

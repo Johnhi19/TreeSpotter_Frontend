@@ -31,7 +31,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       </div>
     </div>
   `,
-  styleUrl: './edit-tree-dialog.component.scss'
+  styleUrl: './edit-dialog.component.scss'
 })
 export class EditTreeDateDialogComponent {
   formattedDate: string;
