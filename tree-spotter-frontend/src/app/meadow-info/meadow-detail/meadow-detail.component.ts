@@ -68,7 +68,9 @@ export class MeadowDetailComponent {
   }
 
   onTreeClick(id: number) {
-    this.router.navigate([`/trees/${id}`]);
+    this.router.navigate([`/trees/${id}`], {
+      queryParams: { maxRow: this.gridRows, maxCol: this.gridColumns }
+    });
   }
 
   navigateToAddTree(row: number, col: number) {
