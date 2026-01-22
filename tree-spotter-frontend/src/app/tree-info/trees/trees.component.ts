@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TranslatePipe } from '@ngx-translate/core';
 import { EditTreeDateDialogComponent } from '../../dialogs/edit-tree-date-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { EditTreePositionDialogComponent } from '../../dialogs/edit-tree-pos-dialog.component';
 
 @Component({
   selector: 'app-trees',
@@ -20,11 +21,17 @@ export class TreesComponent {
   tree: Tree | null = null;
   treeId: number | null = null;
 
+  maxRow: number = 0;
+  maxCol: number = 0;
+
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private dialog: MatDialog, private translate: TranslateService) {}
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     this.treeId = idParam ? Number(idParam) : null;
+
+    this.maxCol = Number(this.route.snapshot.queryParamMap.get('maxCol')) || 0;
+    this.maxRow = Number(this.route.snapshot.queryParamMap.get('maxRow')) || 0;
 
     if (this.treeId){
       console.log(`Fetching data for tree ID: ${this.treeId}`);
@@ -73,8 +80,18 @@ export class TreesComponent {
         }
       });
 
-    } else {
+    } else if (field === 'position') {
 
+      dialogRef = this.dialog.open(EditTreePositionDialogComponent, {
+        data: {
+          label: translatedLabel,
+          value: { x: currentValue.x + 1, y: currentValue.y + 1 },
+          maxRow: this.maxRow,
+          maxCol: this.maxCol
+        }
+      });
+    
+    } else {
       dialogRef = this.dialog.open(EditTreeFieldDialogComponent, {
         data: {
           label: translatedLabel,
@@ -90,6 +107,12 @@ export class TreesComponent {
       // 1️⃣ Update the local tree object
       if (field === 'plantDate') {
         newValue = new Date(newValue);
+      } else if (field === 'position') {
+        newValue = { x: newValue.x - 1, y: newValue.y - 1 };
+        if (newValue.x < 0 || newValue.x >= this.maxRow || newValue.y < 0 || newValue.y >= this.maxCol) {
+          alert(`Ungültige Position. Zeile muss zwischen 1 und ${this.maxRow} liegen, Spalte zwischen 1 und ${this.maxCol}.`);
+          return;
+        }
       }
       (this.tree as any)[field] = newValue;
 

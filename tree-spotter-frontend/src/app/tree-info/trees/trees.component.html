@@ -15,9 +15,10 @@
         <span class="edit-icon">✏️</span>
       </div>
       
-      <div class="detail-row" *ngIf="tree.position">
+      <div class="detail-row clickable" (click)="editField('labels.POSITION', 'position', tree.position)" *ngIf="tree.position">
         <span class="label">{{ 'labels.POSITION' | translate }}:</span>
         <span class="value">Zeile {{ tree.position.x + 1 }}, Spalte {{ tree.position.y + 1 }}</span>
+        <span class="edit-icon">✏️</span>
       </div>
     </div>
     
