@@ -9,13 +9,13 @@
         <span class="edit-icon">✏️</span>
       </div>
       
-      <div class="detail-row clickable" (click)="editField('labels.PLANT_DATE', 'plantDate', tree.plantDate)">
+      <div class="detail-row clickable" (click)="editPlantDate('labels.PLANT_DATE', 'plantDate', tree.plantDate)">
         <span class="label">{{ 'labels.PLANT_DATE' | translate }}:</span>
         <span class="value">{{ tree.plantDate | date:'dd.MM.yyyy' }}</span>
         <span class="edit-icon">✏️</span>
       </div>
       
-      <div class="detail-row clickable" (click)="editField('labels.POSITION', 'position', tree.position)" *ngIf="tree.position">
+      <div class="detail-row clickable" (click)="editPosition('labels.POSITION', 'position', tree.position)" *ngIf="tree.position">
         <span class="label">{{ 'labels.POSITION' | translate }}:</span>
         <span class="value">Zeile {{ tree.position.x + 1 }}, Spalte {{ tree.position.y + 1 }}</span>
         <span class="edit-icon">✏️</span>

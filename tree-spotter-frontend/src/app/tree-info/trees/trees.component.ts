@@ -66,23 +66,52 @@ export class TreesComponent {
     });
   }
 
-  editField(label: string, field: string, currentValue: any) {
-    const translatedLabel = this.translate.instant(label);
-
-    let dialogRef;
-
-    if (field === 'plantDate' && currentValue) {
-      
-      dialogRef = this.dialog.open(EditTreeDateDialogComponent, {
+  editField(label: string, field: string, currentValue: string){
+    const dialogRef = this.dialog.open(EditTreeFieldDialogComponent, {
         data: {
-          label: translatedLabel,
-          value: structuredClone(currentValue) // avoid mutating original until save
+          label: this.translate.instant(label),
+          value: structuredClone(currentValue)
         }
       });
 
-    } else if (field === 'position') {
+    dialogRef.afterClosed().subscribe(newValue => {
+      if (!this.tree) return;
+      (this.tree as any)[field] = newValue;
 
-      dialogRef = this.dialog.open(EditTreePositionDialogComponent, {
+      this.apiService.updateTree(this.tree).subscribe({
+        next: () => console.log('Tree updated'),
+        error: err => console.error(err)
+      });
+    });
+  }
+
+  editPlantDate(label: string, field: string, currentValue: any) {
+    const translatedLabel = this.translate.instant(label);
+
+    const dialogRef = this.dialog.open(EditTreeDateDialogComponent, {
+        data: {
+          label: translatedLabel,
+          value: structuredClone(currentValue)
+        }
+      });
+
+    dialogRef.afterClosed().subscribe(newValue => {
+      if (!newValue || !this.tree) return;
+
+      newValue = new Date(newValue);
+      (this.tree as any)[field] = newValue;
+
+      this.apiService.updateTree(this.tree).subscribe({
+        next: () => console.log('Tree updated'),
+        error: err => console.error(err)
+      });
+    });
+  }
+
+  editPosition(label: string, field: string, currentValue: any) {
+    const translatedLabel = this.translate.instant(label);
+
+    const dialogRef = this.dialog.open(EditTreePositionDialogComponent, {
         data: {
           label: translatedLabel,
           value: { x: currentValue.x + 1, y: currentValue.y + 1 },
@@ -90,39 +119,22 @@ export class TreesComponent {
           maxCol: this.maxCol
         }
       });
-    
-    } else {
-      dialogRef = this.dialog.open(EditTreeFieldDialogComponent, {
-        data: {
-          label: translatedLabel,
-          value: structuredClone(currentValue) // avoid mutating original until save
-        }
-      });
-
-    }
 
     dialogRef.afterClosed().subscribe(newValue => {
-      if (!newValue || !this.tree) return; // user cancelled or no tree
+      if (!newValue || !this.tree) return;
 
-      // 1️⃣ Update the local tree object
-      if (field === 'plantDate') {
-        newValue = new Date(newValue);
-      } else if (field === 'position') {
-        newValue = { x: newValue.x - 1, y: newValue.y - 1 };
-        if (newValue.x < 0 || newValue.x >= this.maxRow || newValue.y < 0 || newValue.y >= this.maxCol) {
-          alert(`Ungültige Position. Zeile muss zwischen 1 und ${this.maxRow} liegen, Spalte zwischen 1 und ${this.maxCol}.`);
-          return;
-        }
+      newValue = { x: newValue.x - 1, y: newValue.y - 1 };
+      if (newValue.x < 0 || newValue.x >= this.maxRow || newValue.y < 0 || newValue.y >= this.maxCol) {
+        alert(`Ungültige Position. Zeile muss zwischen 1 und ${this.maxRow} liegen, Spalte zwischen 1 und ${this.maxCol}.`);
+        return;
       }
       (this.tree as any)[field] = newValue;
 
-      // 2️⃣ Send the WHOLE updated tree to backend
       this.apiService.updateTree(this.tree).subscribe({
         next: () => console.log('Tree updated'),
         error: err => console.error(err)
       });
     });
-
   }
 
   goBackToMeadow() {
