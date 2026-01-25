@@ -58,4 +58,8 @@ export class ApiService {
   updateTree(tree: Tree): Observable<any> {
     return this.http.put(`/api/trees/${tree.id}`, tree);
   }
+
+  uploadImage(imageData: FormData, treeId: number): Observable<any> {
+    return this.http.post(`/api/trees/${treeId}/uploadImage`, imageData);
+  }
 }
