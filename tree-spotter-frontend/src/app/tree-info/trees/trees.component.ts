@@ -144,4 +144,8 @@ export class TreesComponent {
       this.router.navigate(['/']);
     }
   }
+
+  navigateToUploadTreeImage() {
+    this.router.navigate([`/trees/${this.treeId}/uploadImage`]);
+  }
 }
