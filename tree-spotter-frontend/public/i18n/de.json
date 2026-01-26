@@ -9,11 +9,13 @@
     "VALID_EMAIL_REQUIRED": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
   },
   "labels": {
+    "ACCEPTED_TYPES": "Akzeptierte Dateitypen",
     "BACK_TO_MEADOW": "Zurück zur Wiese",
     "CANCEL": "Abbrechen",
     "CONFIRM_PASSWORD": "Passwort bestätigen",
     "DELETE": "Löschen",
     "DELETE_TREE": "Baum löschen",
+    "DESCRIPTION": "Beschreibung",
     "EDIT": "Bearbeitung von",
     "EMAIL": "E-Mail",
     "LOAD_TREE_DATA": "Lade Baumdaten",
@@ -23,10 +25,14 @@
     "PLANT_DATE": "Pflanzdatum",
     "POSITION": "Position",
     "REGISTER": "Registrieren",
+    "SELECT_IMAGE": "Bild auswählen",
     "SUBMIT": "Speichern",
     "TREE_DETAILS": "Baum Details",
     "TYPE": "Typ",
-    "UPLOAD_TREE_IMAGE": "Bild hochladen",
+    "UPLOAD_IMAGE": "Bild hochladen",
     "USERNAME": "Benutzername"
+  },
+  "descriptions": {
+    "UPLOAD_TREE_IMAGE": "Fügen Sie eine Beschreibung für das Bild hinzu"
   }
 }

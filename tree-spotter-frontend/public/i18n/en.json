@@ -9,24 +9,30 @@
     "VALID_EMAIL_REQUIRED": "Please enter a valid email address"
   },
   "labels": {
+    "ACCEPTED_TYPES": "Accepted File Types",
     "BACK_TO_MEADOW": "Back to Meadow",
     "CANCEL": "Cancel",
     "CONFIRM_PASSWORD": "Confirm Password",
     "DELETE": "Delete",
     "DELETE_TREE": "Delete Tree",
+    "DESCRIPTION": "Description",
     "EMAIL": "Email",
     "EDIT": "Edit",
     "LOAD_TREE_DATA": "Loading Tree Data",
     "LOGIN": "Login",
     "MEADOW": "Meadow",
     "PASSWORD": "Password",
-    "PLANT_DATE": "Plantdate",
+    "PLANT_DATE": "Plant Date",
     "POSITION": "Position",
     "REGISTER": "Register",
+    "SELECT_IMAGE": "Select Image",
     "SUBMIT": "Submit",
     "TREE_DETAILS": "Tree Details",
     "TYPE": "Type",
-    "UPLOAD_TREE_IMAGE": "Upload Tree Image",
+    "UPLOAD_IMAGE": "Upload Image",
     "USERNAME": "Username"
+  },
+  "descriptions": {
+    "UPLOAD_TREE_IMAGE": "Add a description for the tree image"
   }
 }
