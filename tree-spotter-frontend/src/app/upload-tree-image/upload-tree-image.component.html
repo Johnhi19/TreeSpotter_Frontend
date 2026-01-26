@@ -1,0 +1,32 @@
+<div class="form-container upload-card">
+    <h2>{{ 'labels.UPLOAD_IMAGE' | translate }}</h2>
+
+    <form (ngSubmit)="onUpload()" #uploadForm="ngForm">
+        <div class="form-field">
+            <label for="image">{{ 'labels.SELECT_IMAGE' | translate }}</label>
+            <input type="file" id="image" (change)="onFileSelected($event)" accept=".jpg,.jpeg,.png" required />
+            <small class="hint">{{ 'labels.ACCEPTED_TYPES' | translate }}: JPG, JPEG, PNG</small>
+        </div>
+
+        <div class="form-field">
+            <label for="description">{{ 'labels.DESCRIPTION' | translate }}</label>
+            <textarea
+                id="description"
+                [(ngModel)]="description"
+                name="description"
+                rows="4"
+                placeholder="{{ 'descriptions.UPLOAD_TREE_IMAGE' | translate }}">
+            </textarea>
+        </div>
+
+        <div class="button-group">
+            <button class="upload-button" type="submit" [disabled]="!selectedFile">
+                {{ 'labels.SUBMIT' | translate }}
+            </button>
+            <button type="button" class="cancel-button" (click)="onCancel()">
+                {{ 'labels.CANCEL' | translate }}
+            </button>
+        </div>
+    </form>
+</div>
+
