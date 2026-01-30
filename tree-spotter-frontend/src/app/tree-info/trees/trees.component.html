@@ -36,6 +36,21 @@
         {{ 'labels.UPLOAD_IMAGE' | translate }}
       </button>
     </div>
+
+    <div class="images-section" *ngIf="images && images.length > 0">
+      <h2>{{ 'labels.IMAGES' | translate }}</h2>
+      <div class="image-grid">
+        <div class="image-card" (click)="showBigTreeImage()" *ngFor="let image of images">
+          <img [src]="'/api' + image.path" alt="Tree Image" class="tree-image" />
+          <div class="image-description" *ngIf="image.description">
+            {{ image.description }}
+          </div>
+          <div class="image-datetime">
+            {{ image.datetime | date:'dd.MM.yyyy HH:mm' }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <ng-template #loading>

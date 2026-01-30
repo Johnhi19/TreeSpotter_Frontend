@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { EditTreeDateDialogComponent } from '../../dialogs/edit-tree-date-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { EditTreePositionDialogComponent } from '../../dialogs/edit-tree-pos-dialog.component';
+import { Image } from '../../models/image';
 
 @Component({
   selector: 'app-trees',
@@ -20,6 +21,7 @@ import { EditTreePositionDialogComponent } from '../../dialogs/edit-tree-pos-dia
 export class TreesComponent {
   tree: Tree | null = null;
   treeId: number | null = null;
+  images: Image[] = [];
 
   maxRow: number = 0;
   maxCol: number = 0;
@@ -34,8 +36,8 @@ export class TreesComponent {
     this.maxRow = Number(this.route.snapshot.queryParamMap.get('maxRow')) || 0;
 
     if (this.treeId){
-      console.log(`Fetching data for tree ID: ${this.treeId}`);
       this.apiService.getTreeById(this.treeId).subscribe((data) => { this.tree = data; });
+      this.apiService.getTreeImages(this.treeId).subscribe((data) => { this.images = data; });
     }
   }
 
@@ -147,5 +149,9 @@ export class TreesComponent {
 
   navigateToUploadTreeImage() {
     this.router.navigate([`/trees/${this.treeId}/uploadImage`]);
+  }
+
+  showBigTreeImage() {
+    alert("Not implemented yet!");
   }
 }
