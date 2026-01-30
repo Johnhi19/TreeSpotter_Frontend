@@ -40,8 +40,8 @@
     <div class="images-section" *ngIf="images && images.length > 0">
       <h2>{{ 'labels.IMAGES' | translate }}</h2>
       <div class="image-grid">
-        <div class="image-card" (click)="showBigTreeImage()" *ngFor="let image of images">
-          <img [src]="'/api' + image.path" alt="Tree Image" class="tree-image" />
+        <div class="image-card" *ngFor="let image of images">
+          <img [src]="'/api' + image.path" alt="Tree Image" class="tree-image" (click)="openImageViewer(image)" />
           <div class="image-description" *ngIf="image.description">
             {{ image.description }}
           </div>

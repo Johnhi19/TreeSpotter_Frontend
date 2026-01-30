@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { EditTreeDateDialogComponent } from '../../dialogs/edit-tree-date-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { EditTreePositionDialogComponent } from '../../dialogs/edit-tree-pos-dialog.component';
+import { ImageViewerDialogComponent } from '../../dialogs/image-viewer-dialog.component';
 import { Image } from '../../models/image';
 
 @Component({
@@ -151,7 +152,17 @@ export class TreesComponent {
     this.router.navigate([`/trees/${this.treeId}/uploadImage`]);
   }
 
-  showBigTreeImage() {
-    alert("Not implemented yet!");
+  openImageViewer(image: Image) {
+    this.dialog.open(ImageViewerDialogComponent, {
+      width: '90vw',
+      height: '90vh',
+      maxWidth: '800px',
+      maxHeight: '600px',
+      data: {
+        imagePath: '/api' + image.path,
+        description: image.description,
+        datetime: image.datetime ? new Date(image.datetime).toLocaleString() : null
+      }
+    });
   }
 }
