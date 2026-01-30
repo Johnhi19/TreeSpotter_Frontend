@@ -43,6 +43,10 @@ export class ApiService {
     return this.http.get(`/api/meadows/${meadowId}/trees`);
   }
 
+  getTreeImages(treeId: number): Observable<any> {
+    return this.http.get(`/api/trees/${treeId}/images`);
+  }
+
   insertMeadow(meadow: Meadow): Observable<any> {
     return this.http.post('/api/meadows', meadow);
   }
