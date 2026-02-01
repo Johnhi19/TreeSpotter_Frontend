@@ -27,6 +27,10 @@ export class ApiService {
     return this.http.delete(`/api/trees/${treeId}`);
   }
 
+  deleteTreeImage(imageId: number): Observable<any> {
+    return this.http.delete(`/api/trees/images/${imageId}`);
+  }
+
   getBasicMeadowInfo(): Observable<any> {
     return this.http.get('/api/meadows');
   }
