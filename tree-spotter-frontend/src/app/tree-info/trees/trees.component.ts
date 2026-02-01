@@ -10,7 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { EditTreeDateDialogComponent } from '../../dialogs/edit-tree-date-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { EditTreePositionDialogComponent } from '../../dialogs/edit-tree-pos-dialog.component';
-import { ImageViewerDialogComponent } from '../../dialogs/image-viewer-dialog.component';
+import { ImageViewerDialogComponent } from '../../dialogs/image-viewer/image-viewer-dialog.component';
 import { Image } from '../../models/image';
 
 @Component({
@@ -161,7 +161,8 @@ export class TreesComponent {
       data: {
         imagePath: '/api' + image.path,
         description: image.description,
-        datetime: image.datetime
+        datetime: image.datetime,
+        imageId: image.id
       }
     });
   }
