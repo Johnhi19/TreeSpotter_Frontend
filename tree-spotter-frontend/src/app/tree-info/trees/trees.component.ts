@@ -78,7 +78,7 @@ export class TreesComponent {
       });
 
     dialogRef.afterClosed().subscribe(newValue => {
-      if (!this.tree) return;
+      if (!this.tree || !newValue) return;
       (this.tree as any)[field] = newValue;
 
       this.apiService.updateTree(this.tree).subscribe({
@@ -156,12 +156,12 @@ export class TreesComponent {
     this.dialog.open(ImageViewerDialogComponent, {
       width: '90vw',
       height: '90vh',
-      maxWidth: '800px',
-      maxHeight: '600px',
+      maxWidth: '900px',
+      maxHeight: '700px',
       data: {
         imagePath: '/api' + image.path,
         description: image.description,
-        datetime: image.datetime ? new Date(image.datetime).toLocaleString() : null
+        datetime: image.datetime
       }
     });
   }
