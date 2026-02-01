@@ -1,0 +1,17 @@
+ <button mat-icon-button class="close-button" (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+</button>
+<div class="image-viewer-dialog">
+    <img [src]="imagePath" alt="Tree Image" class="viewer-image" />
+    <div *ngIf="imageDescription" class="image-description">
+      <strong>{{ 'labels.DESCRIPTION' | translate }}:</strong> {{ imageDescription }}
+    </div>
+    <div *ngIf="imageDate" editableOnEnter editableOnEscape class="image-date">
+      <strong>{{ 'labels.DATE' | translate }}:</strong> {{ imageDate | date:'dd.MM.yyyy' }}
+    </div>
+    <div class="button-container">
+      <button class="cancel-button" (click)="deleteTreeImage()">
+        🗑️ {{ 'labels.DELETE_IMAGE' | translate }}
+      </button>
+    </div>
+</div>

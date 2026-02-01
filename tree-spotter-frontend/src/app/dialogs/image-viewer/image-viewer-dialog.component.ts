@@ -4,25 +4,13 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-image-viewer-dialog',
   standalone: true,
   imports: [CommonModule, MatIconModule, MatButtonModule, TranslatePipe],
-  template: `
-    <button mat-icon-button class="close-button" (click)="closeDialog()">
-      <mat-icon>close</mat-icon>
-    </button>
-    <div class="image-viewer-dialog">
-      <img [src]="imagePath" alt="Tree Image" class="viewer-image" />
-      <div *ngIf="imageDescription" class="image-description">
-        <strong>{{ 'labels.DESCRIPTION' | translate }}:</strong> {{ imageDescription }}
-      </div>
-      <div *ngIf="imageDate" class="image-date">
-        <strong>{{ 'labels.DATE' | translate }}:</strong> {{ imageDate }}
-      </div>
-    </div>
-  `,
+  templateUrl: './image-viewer-dialog.component.html',
   styleUrls: ['./image-viewer-dialog.component.scss']
 })
 export class ImageViewerDialogComponent {
@@ -32,7 +20,8 @@ export class ImageViewerDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ImageViewerDialogComponent>
+    private dialogRef: MatDialogRef<ImageViewerDialogComponent>,
+    private apiService: ApiService
   ) {
     if (data) {
       this.imagePath = data.imagePath || '';
@@ -43,5 +32,18 @@ export class ImageViewerDialogComponent {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  deleteTreeImage() {
+    this.apiService.deleteTreeImage(this.data.imageId).subscribe({
+      next: () => {
+        console.log('Image deleted successfully');
+        this.closeDialog();
+        window.location.reload();
+      },
+      error: (error) => {
+        console.error('Error deleting image:', error);
+      }
+    });
   }
 }
