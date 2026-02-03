@@ -1,17 +1,69 @@
- <button mat-icon-button class="close-button" (click)="closeDialog()">
-    <mat-icon>close</mat-icon>
+<button mat-icon-button class="close-button" (click)="closeDialog()">
+  <mat-icon>close</mat-icon>
 </button>
+
 <div class="image-viewer-dialog">
-    <img [src]="imagePath" alt="Tree Image" class="viewer-image" />
-    <div *ngIf="imageDescription" class="image-description">
-      <strong>{{ 'labels.DESCRIPTION' | translate }}:</strong> {{ imageDescription }}
-    </div>
-    <div *ngIf="imageDate" editableOnEnter editableOnEscape class="image-date">
-      <strong>{{ 'labels.DATE' | translate }}:</strong> {{ imageDate | date:'dd.MM.yyyy' }}
-    </div>
-    <div class="button-container">
-      <button class="cancel-button" (click)="deleteTreeImage()">
-        🗑️ {{ 'labels.DELETE_IMAGE' | translate }}
+  <img [src]="imagePath" alt="Tree Image" class="viewer-image" />
+
+  <!-- Description Section -->
+  <ng-container *ngIf="isDescriptionEdited; else viewMode">
+    <div class="image-description">
+      <strong>{{ 'labels.DESCRIPTION' | translate }}: </strong>
+      <mat-form-field appearance="outline">
+        <input 
+          matInput 
+          [(ngModel)]="imageDescription" 
+          name="imageDescription">
+      </mat-form-field>
+      <button mat-icon-button color="primary" (click)="saveDescription()">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="cancelEditDescription()">
+        <mat-icon>close</mat-icon>
       </button>
     </div>
+  </ng-container>
+
+  <ng-template #viewMode>
+    <div class="image-description clickable" (click)="toggleEditImageDescription()">
+      <strong>{{ 'labels.DESCRIPTION' | translate }}:</strong>
+      <span class="value"> {{ imageDescription }}</span>
+      <span class="edit-icon">✏️</span>
+    </div>
+  </ng-template>
+
+  <!-- Date Section -->
+  <ng-container *ngIf="isDateEdited; else viewDateMode">
+    <div class="image-date">
+      <strong>{{ 'labels.DATE' | translate }}: </strong>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="imageDateString"
+          name="imageDate"
+          required>
+      </mat-form-field>
+      <button mat-icon-button color="primary" (click)="saveDate()">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="cancelEditDate()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #viewDateMode>
+    <div class="image-date clickable" (click)="toggleEditImageDate()">
+      <strong>{{ 'labels.DATE' | translate }}:</strong>
+      <span class="value"> {{ imageDate | date:'dd.MM.yyyy' }}</span>
+      <span class="edit-icon">✏️</span>
+    </div>
+  </ng-template>
+
+  <div class="button-container">
+    <button class="cancel-button" (click)="deleteTreeImage()">
+      🗑️ {{ 'labels.DELETE_IMAGE' | translate }}
+    </button>
+  </div>
 </div>
