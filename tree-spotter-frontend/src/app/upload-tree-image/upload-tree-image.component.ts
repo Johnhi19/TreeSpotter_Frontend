@@ -38,7 +38,7 @@ export class UploadTreeImageComponent {
       formData.append('treeImage', this.selectedFile);
       formData.append('description', this.description);
 
-      this.apiService.uploadImage(formData, this.treeId!)
+      this.apiService.uploadImage(this.treeId!, formData)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe({
           next: (response) => {
